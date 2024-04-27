@@ -7,22 +7,35 @@ use Illuminate\Http\Request;
 
 class KasirController extends Controller
 {
+    public function regis(){
+        return  view('registrasi');
+      }
+      public function registrasi(Request $request){
+          $k = new Kasir;
+          $k->create([
+              'nama'=>$request->input('nama'),
+              'username'=>$request->input('username'),
+              'password'=>$request->input('password'),
+              'akses'=>$request->input('akses')
+
+          ]);
+          return redirect('registrasi');
+      }
     public function login(){
         $k = new Kasir;
       return  view('login');
     }
-    public function ceklogin(Request $request){
+     public function ceklogin(Request $request){
         $s = new Kasir;
-        $s= $s->where ('username',$request->input('username'))->where('password',$request->input('password'));
-
-        if($s->exists()){
-            session([
-                'username'=>$request->input('username'),
-                'password'=>$request->input('password') 
-            ]);
-            return redirect('dashboard');
-        }
-    }
+        if($s->where('username',$request->input('username'))->where('password',$request->input('password'))->exists()){
+                    session(['username'=>$request->input('username')]);
+                   return redirect('dashboard');
+                 
+        
+             }
+                 return back()->with('pesan','Username dan password tidak terdaftar');
+         }
+        
     public function logout(){
         session()->flush();
         return  redirect('login');
@@ -48,7 +61,7 @@ class KasirController extends Controller
             'username'=>$request->input('username'),
             'password'=>$request->input('password'),
             'akses'=>$request->input('akses')
-            
+
         ]);
         return redirect('kasir');
     }
@@ -69,5 +82,5 @@ class KasirController extends Controller
         ]);
         return redirect('kasir');
 }
-        
+
 }

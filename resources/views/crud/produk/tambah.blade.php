@@ -11,8 +11,7 @@
             </div>
             <div class="card-body">
                 <form action="" method="post">
-
-                    @csrf
+                   @csrf
                     <div class="mb-3 row">
                         <label for="" class="col-form-label col-2">Nama Produk</label>
                         <div class="col-10">

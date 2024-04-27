@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-success" type="reset"><i class="bi bi-x-square-fill"></i> Batal</button>
+                       
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-save-fill"></i>&nbsp;Simpan 
                         </button>

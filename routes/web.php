@@ -3,7 +3,9 @@
 use App\Http\Controllers\KasirController;
 
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Middleware\kasirmiddlaware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,11 +14,14 @@ Route::get('/', function () {
 
 Route::get('logout',[KasirController::class,'logout']);
 
+Route::get('registrasi',[KasirController::class,'regis']);
+Route::post('registrasi',[KasirController::class,'registrasi']);
+
 Route::get('login',[KasirController::class,'login']);
 Route::post('login',[KasirController::class,'ceklogin']);
 
 Route::get('layout',[KasirController::class,'layout']);
-Route::get('dashboard',[KasirController::class,'dass']);
+Route::get('dashboard',[KasirController::class,'dass'])->middleware(kasirmiddlaware::class);
 
 
 //kasir
@@ -42,3 +47,6 @@ Route::post('tambahpelanggan',[PelangganController::class,'tambahpelanggan']);
 Route::get('editpelanggan/{id}',[PelangganController::class,'edit']);
 Route::post('editpelanggan/{id}',[PelangganController::class,'editpelanggan']);
 Route::get('hapuspelanggan/{id}',[PelangganController::class,'hapuspelanggan']);
+
+//teransaksi
+Route::get('transaksi',[PenjualanController::class,'transaksi']);

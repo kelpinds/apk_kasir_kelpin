@@ -1,3 +1,6 @@
+
+@extends('layout')
+@section('layout')
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,55 +21,47 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Registrasi Admin</h3></div>
                                     <div class="card-body">
-                                        @if(session('pesan'))
-                                        <div class="alert alert-success" role="alert">
-                                           {{session('pesan')}} 
-                                          </div>
-                                        @endif
-                                        
-                                        @if($errors->any())
-                                        <div class="alert alert-success" role="alert">
-                                           Gagal Login
-                                          </div>
-                                        @endif
                                         <form method="POST">
                                             @csrf
                                             <div class="form-floating mb-3">
+                                                <input class="form-control" id="nama" type="text" name="nama" placeholder="Nama" />
+                                                <label for="nama">Nama</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
                                                 <input class="form-control" id="username" type="text" name="username" placeholder=" Username" />
                                                 <label for="username">Username</label>
-                                                @error('username')
-                                                <div class="form-text">
-                                                    {{$message}}
-                                                </div>
-                                            @enderror
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="password" type="password" name="password" placeholder=" Password" />
                                                 <label for="password">Password</label>
-                                                @error('password')
-                                                <div class="form-text">
-                                                    {{$message}}
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <div class="col-10">
+                                                    <select class="form-control" name="akses" id="akses" >
+                                                            <option>Admin</option>
+                                                    </select>
                                                 </div>
-                                            @enderror
                                             </div>
                                             <div class="mb-3">
-                                                <button class="btn btn-outline-success form-control" type="submit">Login</button>
+                                                <button class="btn btn-outline-success form-control" type="submit">Registrasi</button>
                                             </div>
-                            
+
                                         </form>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
             </div>
-           
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
     </body>
 </html>
+
+@endsection
